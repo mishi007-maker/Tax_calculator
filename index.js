@@ -9,48 +9,48 @@ document.getElementById("tax_form").addEventListener("submit", function(event) {
     // GROSS SALARY
     let grossSalary = basic_salary + benefits;
 
-    // NHIF
-    let nhif = 0;
+    //SHIF
+    let shif = 0;
 
     if (grossSalary <= 5999) {
-        nhif = 150;
+        shif = 150;
     } else if (grossSalary <= 7999) {
-        nhif = 300;
+        shif = 300;
     } else if (grossSalary <= 11999) {
-        nhif = 400;
+        shif = 400;
     } else if (grossSalary <= 14999) {
-        nhif = 500;
+        shif = 500;
     } else if (grossSalary <= 19999) {
-        nhif = 600;
+        shif = 600;
     } else if (grossSalary <= 24999) {
-        nhif = 750;
+        shif = 750;
     } else if (grossSalary <= 29999) {
-        nhif = 850;
+        shif = 850;
     } else if (grossSalary <= 34999) {
-        nhif = 900;
+        shif = 900;
     } else if (grossSalary <= 39999) {
-        nhif = 950;
+        shif = 950;
     } else if (grossSalary <= 44999) {
-        nhif = 1000;
+        shif = 1000;
     } else if (grossSalary <= 49999) {
-        nhif = 1100;
+        shif = 1100;
     } else if (grossSalary <= 59999) {
-        nhif = 1200;
+        shif = 1200;
     } else if (grossSalary <= 69999) {
-        nhif = 1300;
+        shif = 1300;
     } else if (grossSalary <= 79999) {
-        nhif = 1400;
+        shif = 1400;
     } else if (grossSalary <= 89999) {
-        nhif = 1500;
+        shif = 1500;
     } else if (grossSalary <= 99999) {
-        nhif = 1600;
+        shif = 1600;
     } else {
-        nhif = 1700;
+        shif = 1700;
     }
 
     // DISPLAY NHIF + GROSS
     document.getElementById("gross_salary").innerHTML = grossSalary;
-    document.getElementById("nhif").innerHTML = nhif;
+    document.getElementById("shif").innerHTML = shif;
 
     // NSSF
     let nssf;
@@ -69,7 +69,7 @@ document.getElementById("tax_form").addEventListener("submit", function(event) {
     document.getElementById("nhdf").innerHTML = nhdf;
 
     // TAXABLE INCOME
-    let taxableIncome = grossSalary - (nssf + nhdf + nhif);
+    let taxableIncome = grossSalary - (nssf + nhdf + shif);
 
     document.getElementById("taxable_income").innerHTML = taxableIncome;
 
@@ -122,7 +122,7 @@ document.getElementById("tax_form").addEventListener("submit", function(event) {
     document.getElementById("paye").innerHTML = payee;
 
     // NET SALARY
-    let net_salary = grossSalary - (nhif + nhdf + nssf + payee);
+    let net_salary = grossSalary - (shif + nhdf + nssf + payee);
 
     document.getElementById("net_salary").innerHTML = net_salary;
 
