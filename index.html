@@ -1,118 +1,326 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kenya Tax Calculator</title>
 
+    <title>TaxNova | Kenya Payroll Tax Calculator</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <style>
-        body {
-            background-color: #f4f7fb;
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#edf4ff,#d7e9ff);
+            overflow-x:hidden;
+        }
+
+        .navbar{
+            background:rgba(10,25,80,0.95);
+            backdrop-filter:blur(10px);
+            box-shadow:0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand{
+            font-size:1.7rem;
+            font-weight:700;
+            color:white;
+        }
+
+        .nav-link{
+            color:white;
+            margin-left:10px;
+            border:1px solid rgba(255,255,255,0.3);
+            padding:8px 18px;
+            border-radius:30px;
+            transition:0.3s;
+        }
+
+        .nav-link:hover{
+            background:white;
+            color:#0d6efd;
+            transform:translateY(-2px);
+        }
+
+        /* HERO */
+
+        .hero{
+            padding:140px 20px 90px;
+            text-align:center;
+        }
+
+        .hero h1{
+            font-size:4rem;
+            font-weight:700;
+            color:#081f5c;
+        }
+
+        .hero span{
+            color:#0d6efd;
+        }
+
+        .hero p{
+            max-width:850px;
+            margin:auto;
+            margin-top:20px;
+            color:#555;
+            line-height:1.9;
+            font-size:1.1rem;
+        }
+
+        .hero-buttons{
+            margin-top:35px;
+        }
+
+        .hero-buttons a{
+            padding:14px 28px;
+            border-radius:40px;
+            font-weight:600;
+            margin:10px;
+        }
+
+        .calculator-card{
+            background:rgba(255,255,255,0.85);
+            backdrop-filter:blur(15px);
+            border-radius:30px;
+            padding:45px;
+            box-shadow:0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .calculator-title{
+            font-weight:700;
+            color:#081f5c;
+        }
+
+        .form-label{
+            font-weight:600;
+            color:#081f5c;
+        }
+
+        .form-control{
+            background:#f3f7ff;
+            padding:15px;
+            border-radius:15px;
+        }
+
+        .form-control:focus{
+            box-shadow:0 0 0 4px rgba(13,110,253,0.15);
+            background:white;
+        }
+
+        .btn-calculate{
+            width:100%;
+            padding:15px;
+            border-radius:15px;
+            font-size:1.1rem;
+            font-weight:600;
+            background:linear-gradient(135deg,#0d6efd,#4b8dff);
+            transition:0.3s;
+        }
+
+        .btn-calculate:hover{
+            transform:translateY(-4px);
+            box-shadow:0 15px 30px rgba(13,110,253,0.25);
+        }
+
+        .table-container{
+            margin-top:35px;
+            overflow:hidden;
+            border-radius:20px;
+        }
+
+        th{
+            background:#0d6efd;
+            color:white;
+            padding:18px;
+            
+        }
+
+        td{
+            padding:18px;
+        }
+
+        tbody tr{
+            transition:0.3s;
+        }
+
+        tbody tr:hover{
+            background:#f4f8ff;
+        }
+
+        .result-value{
+            font-weight:600;
+            color:#198754;
+        }
+
+        .net-row{
+            background:rgba(25,135,84,0.1);
         }
 
 
-        .navbar {
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        .info-section{
+            margin-top:90px;
+        }
 
+        .info-card{
+            padding:35px;
+            border-radius:25px;
+            color:white;
+            height:100%;
+            transition:0.3s;
+            box-shadow:0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        .info-card:hover{
+            transform:translateY(-8px);
+        }
+
+        .card-blue{
+            background:linear-gradient(135deg,#0d6efd,#4b8dff);
+        }
+
+        .card-purple{
+            background:linear-gradient(135deg,#6f42c1,#9b6bff);
+        }
+
+        .card-green{
+            background:linear-gradient(135deg,#198754,#3ccf7f);
+        }
+
+        .info-icon{
+            font-size:3rem;
+            margin-bottom:20px;
+        }
+
+        .info-card h4{
+            font-weight:700;
+            margin-bottom:18px;
+        }
+
+        .info-card p,
+        .info-card li{
+            opacity:0.95;
+            line-height:1.8;
         }
 
 
-        .main-section {
-            padding: 70px 20px;
-            text-align: center;
+
+        footer{
+            margin-top:100px;
+            background:#081f5c;
+            color:white;
+            padding:80px 20px 30px;
         }
 
-        .main-title {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #0a0b0b;
+        .footer-title{
+            font-weight:700;
+            margin-bottom:20px;
         }
 
-        .main-text {
-            color: #555;
-            max-width: 700px;
-            margin: auto;
-            margin-top: 15px;
-            font-size: 18px;
+        .footer-text{
+            opacity:0.75;
+            line-height:1.8;
         }
 
-
-        .calculator-card {
-            background: white;
-            border-radius: 15px;
-            padding: 35px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        .footer-links{
+            list-style:none;
+            padding:0;
         }
 
-
-        .btn-calculate {
-            width: 100%;
-            padding: 12px;
-            font-size: 18px;
-            border-radius: 10px;
+        .footer-links li{
+            margin-bottom:14px;
         }
 
-
-        table {
-            margin-top: 30px;
+        .footer-links a{
+            text-decoration:none;
+            color:rgba(255,255,255,0.75);
+            transition:0.3s;
         }
 
-        th {
-            color: white;
+        .footer-links a:hover{
+            color:white;
+            padding-left:5px;
         }
 
-        .result-value {
-            font-weight: bold;
-            color: #198754;
+        .social-icons{
+            display:flex;
+            gap:15px;
+            margin-top:20px;
         }
 
-
-        .info-section {
-            margin-top: 70px;
+        .social-icons a{
+            width:45px;
+            height:45px;
+            background:rgba(255,255,255,0.1);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:50%;
+            color:white;
+            text-decoration:none;
+            transition:0.3s;
         }
 
-        .info-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            height: 100%;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        .social-icons a:hover{
+            background:#0d6efd;
+            transform:translateY(-5px);
         }
 
-        .info-card h4 {
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            color: #431e9a;
-            margin-bottom: 15px;
+        .footer-bottom{
+            border-top:1px solid rgba(255,255,255,0.15);
+            margin-top:50px;
+            padding-top:25px;
+            text-align:center;
         }
 
-        footer {
-            background-color: #4f7091;
-            color: rgb(255, 255, 255);
-            text-align: center;
-            padding: 25px;
-        
+        @media(max-width:768px){
+
+            .hero h1{
+                font-size:2.5px;
+            }
+
+            .calculator-card{
+                padding:25px;
+            }
+
         }
+
     </style>
+
 </head>
 
 <body>
 
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top opacity-75">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-2 opacity-75">
 
         <div class="container">
 
-            <a class="navbar-brand fw-bold" href="#">
-                Kenya Tax Calculator
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-cash-coin"></i>
+                TaxNova
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
 
                 <span class="navbar-toggler-icon"></span>
 
@@ -120,10 +328,12 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
 
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Home</a>
+                        <a class="nav-link" href="#">
+                            Home
+                        </a>
                     </li>
 
                     <li class="nav-item">
@@ -138,6 +348,26 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="https://itax.kra.go.ke/"
+                            target="_blank">
+
+                            iTax
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="https://www.ecitizen.go.ke/"
+                            target="_blank">
+
+                            eCitizen
+
+                        </a>
+                    </li>
+
                 </ul>
 
             </div>
@@ -146,123 +376,180 @@
 
     </nav>
 
-
-    <section class="main-section">
+    <section class="hero">
 
         <div class="container">
 
-            <h1 class="main-title">
-                Kenya Salary & Tax Calculator
+            <h1>
+                TaxNova <span>Payroll & Tax</span>
+                Calculator
             </h1>
 
-            <p class="main-text">
-                This calculator helps employees and employers estimate
-                salary deductions according to Kenyan tax regulations.
-                It calculates NHIF, NSSF, NHDF, PAYE and Net Salary
-                automatically using your basic salary and benefits.
+            <p>
+
+                TaxNova is a modern Kenyan payroll and salary tax calculator
+                designed to help employees and employers estimate
+                statutory deductions accurately.
+
             </p>
+
+            <div class="hero-buttons">
+
+                <a href="https://itax.kra.go.ke/"
+                    target="_blank"
+                    class="btn btn-primary btn-lg">
+
+                    <i class="bi bi-receipt"></i>
+                    Visit iTax
+
+                </a>
+
+                <a href="https://www.ecitizen.go.ke/"
+                    target="_blank"
+                    class="btn btn-outline-primary btn-lg">
+
+                    <i class="bi bi-globe"></i>
+                    Visit eCitizen
+
+                </a>
+
+            </div>
 
         </div>
 
     </section>
 
-
-    <div class="container" id="calculator">
+    <div class="container mb-5" id="calculator">
 
         <div class="row justify-content-center">
 
-            <div class="col-lg-8">
+            <div class="col-lg-9">
 
                 <div class="calculator-card">
 
-                    <h2 class="text-center text-primary mb-4">
-                        Tax Calculator
-                    </h2>
+                    <h2 class="text-center calculator-title mb-4">
 
+                        Salary Tax Calculator
+
+                    </h2>
 
                     <form id="tax_form">
 
-                        <div class="mb-3">
+                        <div class="row">
 
-                            <label class="form-label fw-bold">
-                                Basic Salary
-                            </label>
+                            <div class="col-md-6 mb-4">
 
-                            <input type="number" id="basic_salary" class="form-control form-control-lg"
-                                placeholder="Enter your basic salary" required>
+                                <label class="form-label">
+
+                                    Basic Salary
+
+                                </label>
+
+                                <input type="number"
+                                    id="basic_salary"
+                                    class="form-control"
+                                    placeholder="Enter basic salary">
+
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+
+                                <label class="form-label">
+
+                                    Benefits
+
+                                </label>
+
+                                <input type="number"
+                                    id="benefits"
+                                    class="form-control"
+                                    placeholder="Enter benefits">
+
+                            </div>
 
                         </div>
 
-                        <div class="mb-4">
+                        <button type="submit"
+                            class="btn btn-primary btn-calculate">
 
-                            <label class="form-label fw-bold">
-                                Benefits
-                            </label>
-
-                            <input type="number" id="benefits" class="form-control form-control-lg"
-                                placeholder="Enter benefits amount" required>
-
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-calculate">
-
-                            Calculate Tax
+                            <i class="bi bi-lightning-charge-fill"></i>
+                            Calculate Salary
 
                         </button>
 
                     </form>
 
-                    <table class="table table-bordered table-hover text-center align-middle">
+                    <div class="table-container">
 
-                        <thead>
+                        <table class="table table-bordered text-center">
 
-                            <tr>
-                                <th>Tax Category</th>
-                                <th>Amount (KES)</th>
-                            </tr>
+                            <thead>
 
-                        </thead>
+                                <tr>
 
-                        <tbody>
+                                    <th>Tax Category</th>
+                                    <th>Amount (KES)</th>
 
-                            <tr>
-                                <td>Gross Salary</td>
-                                <td class="result-value" id="gross_salary"></td>
-                            </tr>
+                                </tr>
 
-                            <tr>
-                                <td>SHIF</td>
-                                <td class="result-value" id="shif"></td>
-                            </tr>
+                            </thead>
 
-                            <tr>
-                                <td>NSSF</td>
-                                <td class="result-value" id="nssf"></td>
-                            </tr>
+                            <tbody>
 
-                            <tr>
-                                <td>NHDF</td>
-                                <td class="result-value" id="nhdf"></td>
-                            </tr>
+                                <tr>
+                                    <td>Gross Salary</td>
+                                    <td class="result-value"
+                                        id="gross_salary"></td>
+                                </tr>
 
-                            <tr>
-                                <td>Taxable Income</td>
-                                <td class="result-value" id="taxable_income"></td>
-                            </tr>
+                                <tr>
+                                    <td>SHIF</td>
+                                    <td class="result-value"
+                                        id="shif"></td>
+                                </tr>
 
-                            <tr>
-                                <td>PAYE</td>
-                                <td class="result-value" id="paye"></td>
-                            </tr>
+                                <tr>
+                                    <td>NSSF</td>
+                                    <td class="result-value"
+                                        id="nssf"></td>
+                                </tr>
 
-                            <tr class="table-success">
-                                <td class="fw-bold">Net Salary</td>
-                                <td class="fw-bold result-value" id="net_salary"></td>
-                            </tr>
+                                <tr>
+                                    <td>NHDF</td>
+                                    <td class="result-value"
+                                        id="nhdf"></td>
+                                </tr>
 
-                        </tbody>
+                                <tr>
+                                    <td>Taxable Income</td>
+                                    <td class="result-value"
+                                        id="taxable_income"></td>
+                                </tr>
 
-                    </table>
+                                <tr>
+                                    <td>PAYE</td>
+                                    <td class="result-value"
+                                        id="paye"></td>
+                                </tr>
+
+                                <tr class="net-row">
+
+                                    <td class="fw-bold bg-info">
+
+                                        Net Salary
+
+                                    </td>
+
+                                    <td class="fw-bold result-value bg-info"
+                                        id="net_salary"></td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
 
                 </div>
 
@@ -270,60 +557,76 @@
 
         </div>
 
+        <div class="row info-section g-4" id="about">
 
-        <div class="row info-section" id="about">
+            <div class="col-md-4">
 
-            <div class="col-md-4 mb-4">
+                <div class="info-card card-blue">
 
-                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="bi bi-cash-stack"></i>
+                    </div>
 
-                    <h4>What This Calculator Does:</h4>
+                    <h4>
+                        What TaxNova Does
+                    </h4>
 
                     <p>
-                        This system calculates statutory deductions
-                        based on Kenyan tax regulations and gives an
-                        estimate of the employee's net salary.
+
+                        TaxNova calculates Kenyan statutory deductions
+                        automatically and estimates employee net salary
+                        instantly based on the latest payroll structure.
+
                     </p>
 
                 </div>
 
             </div>
 
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4">
 
-                <div class="info-card">
+                <div class="info-card card-purple">
 
-                    <h4>How It Works:</h4>
+                    <div class="info-icon">
+                        <i class="bi bi-gear-fill"></i>
+                    </div>
 
-                    <p>
-                        Enter your basic salary and benefits.
-                        The system automatically calculates:
-                    </p>
+                    <h4>
+                        How It Works
+                    </h4>
 
                     <ul>
-                        <li>Gross Salary</li>
-                        <li>SHA Contributions</li>
-                        <li>NSSF Deductions</li>
-                        <li>NHDF Contributions</li>
-                        <li>PAYE Tax</li>
-                        <li>Net Salary</li>
+
+                        <li>Enter salary details</li>
+                        <li>Gross salary is generated</li>
+                        <li>SHIF, NSSF & NHDF are deducted</li>
+                        <li>PAYE tax is calculated</li>
+                        <li>Net salary is displayed</li>
+
                     </ul>
 
                 </div>
 
             </div>
 
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4">
 
-                <div class="info-card">
+                <div class="info-card card-green">
 
-                    <h4>Why Use It?</h4>
+                    <div class="info-icon">
+                        <i class="bi bi-bar-chart-fill"></i>
+                    </div>
+
+                    <h4>
+                        Why Use TaxNova
+                    </h4>
 
                     <p>
-                        It helps employees understand how salary
-                        deductions affect their earnings and allows
-                        employers to estimate payroll deductions
-                        quickly and accurately.
+
+                        TaxNova simplifies payroll calculations,
+                        improves salary transparency and helps users
+                        understand tax deductions professionally.
+
                     </p>
 
                 </div>
@@ -334,29 +637,196 @@
 
     </div>
 
-
     <footer>
 
-        <p class="mb-1">
-            Kenya Tax Calculator System
-        </p>
+        <div class="container">
 
-        <small>
-            SmartTax Calculator | Accurate PAYE, SHIF & NSSF Estimates
+            <div class="row gy-5">
 
-            Designed for employees, freelancers, and businesses in Kenya. <br>
-            For estimation purposes only — always confirm with official <br> "kra.go.ke"
-            (https://reference-url-citation.invalid/0) guidelines. <br>
+                <div class="col-lg-4">
 
-            © 2026 SmartTax. All Rights Reserved.
-        </small>
+                    <h3 class="footer-title">
+
+                        <i class="bi bi-cash-coin"></i>
+                        TaxNova
+
+                    </h3>
+
+                    <p class="footer-text">
+
+                        TaxNova is a modern payroll and tax management
+                        platform built to simplify payroll deductions,
+                        salary analysis and employee tax calculations
+                        across Kenya.
+
+                    </p>
+
+                    <div class="social-icons">
+
+                        <a href="#">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="bi bi-twitter-x"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+
+                    <h5 class="footer-title">
+
+                        Quick Links
+
+                    </h5>
+
+                    <ul class="footer-links">
+
+                        <li>
+                            <a href="#">
+                                Home
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#calculator">
+                                Calculator
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#about">
+                                About
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                Contact
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+
+                    <h5 class="footer-title">
+
+                        Government Portals
+
+                    </h5>
+
+                    <ul class="footer-links">
+
+                        <li>
+                            <a href="https://itax.kra.go.ke/"
+                                target="_blank">
+
+                                KRA iTax Portal
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://www.ecitizen.go.ke/"
+                                target="_blank">
+
+                                eCitizen
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://www.sha.go.ke/"
+                                target="_blank">
+
+                                SHA / SHIF Portal
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://www.nssf.or.ke/"
+                                target="_blank">
+
+                                NSSF Kenya
+
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-lg-3">
+
+                    <h5 class="footer-title">
+
+                        Contact Us
+
+                    </h5>
+
+                    <p class="footer-text mb-2">
+
+                        <i class="bi bi-envelope-fill"></i>
+                        support@taxnova.co.ke
+
+                    </p>
+
+                    <p class="footer-text mb-2">
+
+                        <i class="bi bi-telephone-fill"></i>
+                        +254 700 123 456
+
+                    </p>
+
+                    <p class="footer-text">
+
+                        <i class="bi bi-geo-alt-fill"></i>
+                        Nairobi, Kenya
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <p>
+
+                    © 2026 TaxNova. All Rights Reserved.
+
+                </p>
+
+                </small>
+
+            </div>
+
+        </div>
 
     </footer>
 
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="index.js"></script>
 
 </body>
 
 </html>
+
